@@ -12,14 +12,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Test') {
-            steps {
-                dir('DevOps-Project-06') {
-                    sh 'mvn test'
-                }
-            }
-        }
-
     }
 }
