@@ -1,15 +1,25 @@
-stage('Build') {
-    steps {
-        dir('DevOps-Project-06') {
-            sh 'mvn clean package -DskipTests'
-        }
+pipeline {
+    agent {
+        label 'maven'
     }
-}
 
-stage('Test') {
-    steps {
-        dir('DevOps-Project-06') {
-            sh 'mvn test'
+    stages {
+
+        stage('Build') {
+            steps {
+                dir('DevOps-Project-06') {
+                    sh 'mvn clean package -DskipTests'
+                }
+            }
         }
+
+        stage('Test') {
+            steps {
+                dir('DevOps-Project-06') {
+                    sh 'mvn test'
+                }
+            }
+        }
+
     }
 }
