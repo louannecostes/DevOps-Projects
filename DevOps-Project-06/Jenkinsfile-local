@@ -14,11 +14,13 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            steps {
-                dir('DevOps-Project-06') {
-                    withSonarQubeEnv('sonarqube-local') {
-                        sh 'sonar-scanner'
-                    }
+            dir('DevOps-Project-06') {
+               withSonarQubeEnv('sonarqube-local') {
+                  sh '''
+                     mvn sonar:sonar \
+                     -Dsonar.projectKey=sample-app \
+                     -Dsonar.projectName=sample-app
+                  '''
                 }
             }
         }
