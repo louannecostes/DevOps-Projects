@@ -14,15 +14,18 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            dir('DevOps-Project-06') {
-               withSonarQubeEnv('sonarqube-local') {
-                  sh '''
-                     mvn sonar:sonar \
-                     -Dsonar.projectKey=sample-app \
-                     -Dsonar.projectName=sample-app
-                  '''
+            steps {
+                dir('DevOps-Project-06') {
+                    withSonarQubeEnv('sonarqube-local') {
+                        sh '''
+                            mvn sonar:sonar \
+                            -Dsonar.projectKey=sample-app \
+                            -Dsonar.projectName=sample-app
+                        '''
+                    }
                 }
             }
         }
+
     }
 }
